@@ -21,13 +21,11 @@ const validate = async (decoded, request) => {
       scope: [
         ...(isVerified ? ['verified'] : []),
         `user-${user.id}`,
-        //Example: ...user.posts.map(post => `post-${post.id}`),
       ],
     };
 
     return { isValid: true, credentials };
   } catch (e) {
-    logger.log('error', e);
     return { isValid: false };
   }
 };

@@ -1,8 +1,8 @@
-function isObject(item) {
+export function isObject(item) {
   return item && typeof item === 'object' && !Array.isArray(item) && item !== null;
 }
 
-function merge(target, source) {
+export default function merge(target, source) {
   let output = Object.assign({}, target);
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach(key => {
@@ -16,5 +16,3 @@ function merge(target, source) {
   }
   return output;
 }
-
-module.exports = merge;
