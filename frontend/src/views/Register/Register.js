@@ -38,7 +38,7 @@ class Register extends Component {
   };
 
   renderForm = ({ touched, errors, isSubmitting }) => (
-    <Form className="register-form">
+    <Form className={this.props.styles.form}>
       <Input
         type="text"
         name="first_name"
@@ -84,13 +84,15 @@ class Register extends Component {
       <Button type="submit" primary stretch disabled={isSubmitting}>
         Sign Up
       </Button>
-      {this.props.error && <div className="form-error">{this.props.error}</div>}
+      {this.props.error && <div className={this.props.styles.error}>{this.props.styles.error}</div>}
     </Form>
   );
 
   render() {
+    const { styles, registerUser } = this.props;
+
     return (
-      <div className="register">
+      <div className={styles.wrapper}>
         <Formik
           initialValues={{
             first_name: '',
@@ -101,7 +103,7 @@ class Register extends Component {
           }}
           validationSchema={validationSchema}
           onSubmit={(values, { setSubmitting, setFieldValue, setFieldTouched }) => {
-            this.props.registerUser(values).then(action => {
+            registerUser(values).then(action => {
               if (!action.response.ok) {
                 if (!action.response.ok) {
                   setFieldValue('password', '');

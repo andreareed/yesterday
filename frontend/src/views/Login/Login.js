@@ -22,7 +22,7 @@ class Login extends Component {
   };
 
   renderForm = ({ touched, errors, isSubmitting }) => (
-    <Form className="register-form">
+    <Form className={this.props.styles.form}>
       <Input type="email" name="email" maxLength="64" label="Email" validation={touched.email && errors.email} />
       <Input
         type="password"
@@ -35,15 +35,15 @@ class Login extends Component {
       <Button type="submit" primary stretch disabled={isSubmitting}>
         Login
       </Button>
-      {this.props.error && <div className="form-error">{this.props.error}</div>}
+      {this.props.error && <div className={this.props.styles.error}>{this.props.error}</div>}
     </Form>
   );
 
   render() {
-    const { login } = this.props;
+    const { login, styles } = this.props;
 
     return (
-      <div className="register">
+      <div className={styles.wrapper}>
         <Formik
           initialValues={{
             email: '',

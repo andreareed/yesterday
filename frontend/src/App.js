@@ -7,8 +7,8 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 
 import { verifyToken, logout } from './redux/actions';
 
-import LoggedOutLayout from './Layouts/LoggedOutLayout';
-import PrimaryLayout from './Layouts/PrimaryLayout';
+import LoggedOutLayout from './layouts/LoggedOutLayout';
+import PrimaryLayout from './layouts/PrimaryLayout';
 
 import Register from './views/Register';
 import Login from './views/Login';
