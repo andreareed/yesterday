@@ -1,6 +1,6 @@
 const Boom = require('boom');
 
-const service = require('../user/user-service');
+const service = require('./user-service');
 const authService = require('../auth/auth-service');
 
 module.exports = {
