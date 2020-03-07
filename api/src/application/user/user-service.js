@@ -40,4 +40,9 @@ module.exports = {
       .where({ id })
       .first();
   },
+
+  async postGitHubToken(id, github_token) {
+    return User.query().where({id}).update({ github_token });
+  }
+
 };

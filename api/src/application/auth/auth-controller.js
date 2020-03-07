@@ -1,6 +1,9 @@
 const JWT = require('jsonwebtoken');
 const Boom = require('boom');
 const bcrypt = require('bcrypt');
+const Wreck = require('@hapi/wreck');
+const queryString = require('query-string');
+
 const service = require('./auth-service');
 const userService = require('../user/user-service');
 const config = require('../../../config');
@@ -39,5 +42,30 @@ module.exports = {
     }
 
     throw Boom.unauthorized('Unable to verify user');
+  },
+
+  async postGitHubToken(request) {
+    const { auth, payload } = request;
+
+    const options = {
+      baseUrl: 'https://github.com',
+      payload: {
+        client_id: process.env.REACT_APP_GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        code: payload.code,
+        accept: 'json',
+      },
+    };
+
+    const promise = Wreck.request('POST', '/login/oauth/access_token', options);
+    try {
+      const buffer = await promise;
+      const body = await Wreck.read(buffer, options);
+
+      const { access_token } = queryString.parse(body.toString());
+      return userService.postGitHubToken(auth.credentials.id, access_token);
+    } catch (err) {
+      throw Boom.badData('Unable to validate GitHub account');
+    }
   },
 };

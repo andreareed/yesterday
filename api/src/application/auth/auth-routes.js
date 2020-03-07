@@ -36,6 +36,21 @@ module.exports = {
           },
         },
       },
+      {
+        method: 'POST',
+        path: '/auth/github',
+        handler: controller.postGitHubToken,
+        config: {
+          auth: {
+            strategies: ['jwt'],
+          },
+          validate: {
+            payload: {
+              code: Joi.string().required(),
+            },
+          },
+        },
+      },
     ]);
   },
 };

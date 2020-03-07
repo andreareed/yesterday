@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import GitHubConnect from '../../common/components/GitHubConnect';
 
 class PrimaryLayout extends Component {
   static propTypes = {
@@ -7,7 +8,12 @@ class PrimaryLayout extends Component {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, connected } = this.props;
+
+    if (!connected) {
+      return <GitHubConnect />;
+    }
+
     return (
       <div>
         <div>{children}</div>

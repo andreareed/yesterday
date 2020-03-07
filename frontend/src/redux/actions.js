@@ -5,6 +5,7 @@ export const actionConstants = {
   LOGIN_USER: 'LOGIN_USER',
   VERIFY_TOKEN: 'VERIFY_TOKEN',
   LOGOUT_USER: 'LOGOUT_USER',
+  GET_GITHUB_TOKEN: 'GET_GITHUB_TOKEN',
 };
 
 export const registerUser = payload => ({
@@ -19,7 +20,12 @@ export const login = payload => ({
 
 export const verifyToken = token => ({
   type: actionConstants.VERIFY_TOKEN,
-  promise: client.post('/auth/verify-token', { token }),
+  promise: client.post('auth/verify-token', { token }),
 });
 
 export const logout = () => ({ type: actionConstants.LOGOUT_USER });
+
+export const verifyGitHubCode = code => ({
+  type: actionConstants.GET_GITHUB_TOKEN,
+  promise: client.post('auth/github', { code }),
+});
