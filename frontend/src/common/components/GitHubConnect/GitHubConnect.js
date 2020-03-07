@@ -5,8 +5,6 @@ import queryString from 'query-string';
 
 import config from '../../../config';
 
-import Button from '../Button';
-
 class GitHubConnect extends Component {
   static propTypes = {
     login: PropTypes.func.isRequired,
@@ -24,7 +22,7 @@ class GitHubConnect extends Component {
 
   render() {
     const { styles } = this.props;
-    console.log(config.github.redirect_uri);
+
     return (
       <div className={styles.wrapper}>
         <a

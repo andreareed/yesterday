@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 import Input from '../../common/components/Input';
 import Button from '../../common/components/Button';
@@ -61,6 +62,7 @@ class Login extends Component {
           }}
           render={this.renderForm}
         />
+        <Link to="/register">Register</Link>
       </div>
     );
   }

@@ -8,9 +8,9 @@ class PrimaryLayout extends Component {
   };
 
   render() {
-    const { children, connected } = this.props;
+    const { children, user } = this.props;
 
-    if (!connected) {
+    if (!user.getIn(['data', 'github_token'])) {
       return <GitHubConnect />;
     }
 

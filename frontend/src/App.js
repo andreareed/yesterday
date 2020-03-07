@@ -13,6 +13,8 @@ import PrimaryLayout from './layouts/PrimaryLayout';
 import Register from './views/Register';
 import Login from './views/Login';
 
+import Dashboard from './views/Dashboard';
+
 class App extends Component {
   static propTypes = {
     user: PropTypes.instanceOf(Map),
@@ -47,7 +49,7 @@ class App extends Component {
           <Switch>
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
-            {/* <Redirect to="/login" /> */}
+            <Redirect to="/login" />
           </Switch>
         </LoggedOutLayout>
       );
@@ -55,7 +57,10 @@ class App extends Component {
 
     return (
       <PrimaryLayout>
-        <Switch>{/* <Redirect to="/" /> */}</Switch>
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Redirect to="/" />
+        </Switch>
       </PrimaryLayout>
     );
   }
