@@ -3,6 +3,7 @@ import store from 'store2';
 import { fromJS } from 'immutable';
 
 import { actionConstants } from './actions';
+import github from '../views/Dashboard/github-reducers';
 
 const { REGISTER_USER, LOGIN_USER, VERIFY_TOKEN, LOGOUT_USER, GET_GITHUB_TOKEN } = actionConstants;
 const defaultState = fromJS({ data: null, loading: false, error: null });
@@ -30,10 +31,15 @@ const user = (state = defaultState, action) => {
     case `${REGISTER_USER}_SUCCESS`:
     case `${LOGIN_USER}_SUCCESS`:
     case `${VERIFY_TOKEN}_SUCCESS`:
-    case `${GET_GITHUB_TOKEN}_SUCCESS`:
       store.set('token', action.json.token);
       return fromJS({
         data: action.json,
+        loading: false,
+        error: null,
+      });
+    case `${GET_GITHUB_TOKEN}_SUCCESS`:
+      return fromJS({
+        data: state.set('github_token', action.json),
         loading: false,
         error: null,
       });
@@ -53,4 +59,4 @@ const user = (state = defaultState, action) => {
   }
 };
 
-export default combineReducers({ token, user });
+export default combineReducers({ token, user, github });

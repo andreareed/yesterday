@@ -24,7 +24,7 @@ class App extends Component {
 
   componentDidMount() {
     const { user, verifyToken } = this.props;
-    if (!user) {
+    if (!user.get('data')) {
       const token = store.get('token');
       if (token) {
         verifyToken(token);
@@ -43,13 +43,13 @@ class App extends Component {
       return 'loading...';
     }
 
-    if (!user) {
+    if (!user.get('data')) {
       return (
         <LoggedOutLayout>
           <Switch>
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
-            <Redirect to="/login" />
+            {/* <Redirect to="/login" /> */}
           </Switch>
         </LoggedOutLayout>
       );
@@ -68,7 +68,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user.get('data'),
+    user: state.user,
     loading: state.token.get('loading'),
   };
 };

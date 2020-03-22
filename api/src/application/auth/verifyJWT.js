@@ -18,10 +18,8 @@ const validate = async (decoded, request) => {
         first_name: user.first_name,
         last_name: user.last_name,
       },
-      scope: [
-        ...(isVerified ? ['verified'] : []),
-        `user-${user.id}`,
-      ],
+      github: user.github_token,
+      scope: [...(isVerified ? ['verified'] : []), `user-${user.id}`],
     };
 
     return { isValid: true, credentials };

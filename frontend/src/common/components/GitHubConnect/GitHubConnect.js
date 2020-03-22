@@ -7,7 +7,8 @@ import config from '../../../config';
 
 class GitHubConnect extends Component {
   static propTypes = {
-    login: PropTypes.func.isRequired,
+    verifyGitHubCode: PropTypes.func.isRequired,
+    styles: PropTypes.object,
   };
 
   componentDidMount() {
@@ -15,21 +16,21 @@ class GitHubConnect extends Component {
     const { code } = queryString.parse(location.search);
 
     if (code) {
-      console.log({ code });
       verifyGitHubCode(code);
     }
   }
 
   render() {
     const { styles } = this.props;
+    const query = queryString.stringify({
+      client_id: config.github.client_id,
+      redirect_uri: config.github.redirect_uri,
+      scope: 'repo user read:org',
+    });
 
     return (
       <div className={styles.wrapper}>
-        <a
-          href={`https://github.com/login/oauth/authorize?client_id=${config.github.client_id}&redirect_uri=${config.github.redirect_uri}`}
-        >
-          Connect
-        </a>
+        <a href={`https://github.com/login/oauth/authorize?${query}`}>Connect</a>
       </div>
     );
   }
