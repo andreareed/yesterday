@@ -1,5 +1,3 @@
-const Joi = require('joi');
-const octokit = require('../../lib/octokit');
 const controller = require('./github-controller');
 
 const GitHubRoutes = {
