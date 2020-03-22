@@ -31,10 +31,15 @@ const user = (state = defaultState, action) => {
     case `${REGISTER_USER}_SUCCESS`:
     case `${LOGIN_USER}_SUCCESS`:
     case `${VERIFY_TOKEN}_SUCCESS`:
-    case `${GET_GITHUB_TOKEN}_SUCCESS`:
       store.set('token', action.json.token);
       return fromJS({
         data: action.json,
+        loading: false,
+        error: null,
+      });
+    case `${GET_GITHUB_TOKEN}_SUCCESS`:
+      return fromJS({
+        data: state.set('github_token', action.json),
         loading: false,
         error: null,
       });

@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import store from 'store2';
 import { fromJS } from 'immutable';
 
 import { actionConstants } from './github-actions';
