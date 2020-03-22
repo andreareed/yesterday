@@ -54,6 +54,7 @@ module.exports = {
         client_secret: process.env.GITHUB_CLIENT_SECRET,
         code: payload.code,
         accept: 'json',
+        scope: 'repo',
       },
     };
 

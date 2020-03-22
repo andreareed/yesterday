@@ -7,7 +7,8 @@ import config from '../../../config';
 
 class GitHubConnect extends Component {
   static propTypes = {
-    login: PropTypes.func.isRequired,
+    verifyGitHubCode: PropTypes.func.isRequired,
+    styles: PropTypes.object,
   };
 
   componentDidMount() {
@@ -15,7 +16,6 @@ class GitHubConnect extends Component {
     const { code } = queryString.parse(location.search);
 
     if (code) {
-      console.log({ code });
       verifyGitHubCode(code);
     }
   }

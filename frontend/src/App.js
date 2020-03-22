@@ -49,7 +49,7 @@ class App extends Component {
           <Switch>
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
-            <Redirect to="/login" />
+            {/* <Redirect to="/login" /> */}
           </Switch>
         </LoggedOutLayout>
       );
